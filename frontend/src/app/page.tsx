@@ -206,7 +206,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-10 max-w-6xl mx-auto pb-12">
+    <div className="space-y-8 xl:space-y-10 max-w-7xl mx-auto pb-16">
       {/* ─────────────────────────────────────────────────────────────
           1. TOP WELCOME HEADER
           Spacious, minimalist, professional
@@ -217,7 +217,7 @@ export default function HomePage() {
             Welcome to CYBERCORE
           </h1>
           <p className="text-sm text-[#94A3B8] mt-1.5 font-normal">
-            Your digital security, simplified.
+            Your digital security, simplified. Stay ahead of what&apos;s next.
           </p>
         </div>
 
@@ -236,12 +236,20 @@ export default function HomePage() {
           ───────────────────────────────────────────────────────────── */}
       <section className="bg-[#151C26] border border-[#1E2633] rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
         <div>
-          <h2 className="text-lg sm:text-xl font-semibold text-[#F8FAFC] tracking-tight">
-            Is this website safe?
-          </h2>
-          <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
-            Analyze suspicious websites for phishing, scams and malicious activity.
-          </p>
+          <div className="flex items-start gap-3">
+            <div className="hidden sm:flex w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 items-center justify-center text-[#60A5FA]">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#3B82F6] mb-1">Threat intelligence</p>
+              <h2 className="text-lg sm:text-xl font-semibold text-[#F8FAFC] tracking-tight">
+                Is this website safe?
+              </h2>
+              <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
+                Analyze suspicious websites for phishing, scams and malicious activity.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Input Form */}
