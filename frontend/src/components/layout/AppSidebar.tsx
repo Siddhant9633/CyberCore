@@ -76,10 +76,10 @@ export function AppSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: A
         />
       )}
 
-      {/* 240px Fixed/Collapsible Sidebar in Document Flow */}
+      {/* 220px Fixed/Collapsible Sidebar in Document Flow */}
       <aside
         className={`fixed top-0 bottom-0 left-0 z-40 md:sticky md:top-0 md:h-screen md:shrink-0 flex flex-col bg-[#10151D] border-r border-[#1E2633] transition-all duration-200 ${
-          collapsed ? "w-16" : "w-[240px]"
+          collapsed ? "w-16" : "w-[220px]"
         } ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
         {/* Brand / Logo */}

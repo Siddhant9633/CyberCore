@@ -245,10 +245,10 @@ export default function HomePage() {
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#3B82F6] mb-1">Website risk analysis</p>
               <h2 className="text-2xl sm:text-3xl font-semibold text-[#F8FAFC] tracking-tight">
-                The internet is unpredictable. Browse with confidence.
+                Check before you click.
               </h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
-                Run a focused risk analysis before you trust a website. Results stay private to your workspace.
+                Analyze websites for phishing, scams and malicious activity.
               </p>
             </div>
           </div>
@@ -326,7 +326,7 @@ export default function HomePage() {
 
           {/* Quick Presets for Convenient Testing */}
           <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-[#94A3B8]">
-            <span className="text-[#64748B]">Quick tests:</span>
+            <span className="text-[#64748B]">Try a safe test:</span>
             {[
               { label: "github.com", desc: "Clean" },
               { label: "paypal-security-update.xyz", desc: "Suspicious" },
