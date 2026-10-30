@@ -216,18 +216,18 @@ export default function HomePage() {
   };
 
   return (
-    <div className="space-y-8 xl:space-y-10 max-w-7xl mx-auto pb-16">
+    <div className="mx-auto max-w-6xl space-y-12 pb-20">
       {/* ─────────────────────────────────────────────────────────────
           1. TOP WELCOME HEADER
           Spacious, minimalist, professional
           ───────────────────────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pt-2">
+      <div className="flex flex-col gap-2 pt-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#F8FAFC]">
-            Welcome to CYBERCORE
+          <h1 className="text-3xl sm:text-4xl font-semibold tracking-[-0.04em] text-[#F8FAFC]">
+            Good morning. Stay ahead of risk.
           </h1>
           <p className="text-sm text-[#94A3B8] mt-1.5 font-normal">
-            Your digital safety starts here. Review a website before you trust it.
+            A calm, clear view of the websites and files that matter to you.
           </p>
         </div>
       </div>
@@ -236,7 +236,7 @@ export default function HomePage() {
           2. PRIMARY SECTION: PROMINENT WEBSITE SCANNER
           Main visual focus, clean SaaS input, validation & results
           ───────────────────────────────────────────────────────────── */}
-      <section className="bg-[#151C26] border border-[#1E2633] rounded-xl p-6 sm:p-8 space-y-6 shadow-sm">
+      <section className="relative overflow-hidden rounded-2xl border border-[#263244] bg-[#111821] p-7 sm:p-10 space-y-8 shadow-[0_18px_60px_rgba(0,0,0,0.18)]">
         <div>
           <div className="flex items-start gap-3">
             <div className="hidden sm:flex w-10 h-10 rounded-xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 items-center justify-center text-[#60A5FA]">
@@ -245,10 +245,10 @@ export default function HomePage() {
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#3B82F6] mb-1">Website risk analysis</p>
               <h2 className="text-2xl sm:text-3xl font-semibold text-[#F8FAFC] tracking-tight">
-                Check before you click.
+                The internet is unpredictable. Browse with confidence.
               </h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
-                Analyze a website for phishing, scams, malware and other signals of risk.
+                Run a focused risk analysis before you trust a website. Results stay private to your workspace.
               </p>
             </div>
           </div>
@@ -256,7 +256,7 @@ export default function HomePage() {
 
         {/* Input Form */}
         <form onSubmit={handleScanSubmit} className="space-y-3">
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col lg:flex-row gap-3">
             <div className="relative flex-1">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#64748B]">
                 <Globe className="w-4 h-4" />
@@ -411,7 +411,7 @@ export default function HomePage() {
           3. FOUR COMPACT STATISTICS
           Real backend data only, zero invented metrics, graceful empty states
           ───────────────────────────────────────────────────────────── */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-[#263244] bg-[#263244]">
         {[
           { label: "Total Scans", value: derivedStats.total, tone: "text-[#F8FAFC]", icon: Activity },
           { label: "Safe Websites", value: derivedStats.safe, tone: "text-[#22C55E]", icon: CheckCircle2 },
@@ -420,13 +420,13 @@ export default function HomePage() {
         ].map((stat) => {
           const Icon = stat.icon;
           return (
-            <div key={stat.label} className="bg-[#151C26] border border-[#263244] rounded-xl p-5 flex items-start justify-between">
+            <div key={stat.label} className="bg-[#151E29] p-5 sm:p-6 flex items-start justify-between min-h-[116px]">
               <div>
                 <span className="text-xs font-medium text-[#94A3B8]">{stat.label}</span>
                 <div className={`mt-2 text-2xl font-semibold tracking-tight ${stat.tone}`}>
                   {loadingTelemetry ? <span className="inline-block w-10 h-7 bg-[#263244] animate-pulse rounded" /> : stat.value.toLocaleString()}
                 </div>
-                <p className="mt-1 text-[11px] text-[#64748B]">Based on recorded scans</p>
+                
               </div>
               <Icon className={`w-4 h-4 ${stat.tone}`} aria-hidden="true" />
             </div>
@@ -440,7 +440,7 @@ export default function HomePage() {
           ───────────────────────────────────────────────────────────── */}
       <section className="space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-[#F8FAFC]">Quick Access</h3>
+          <h3 className="text-lg font-semibold tracking-tight text-[#F8FAFC]">Security tools</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

@@ -1,31 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
-/* ─────────────────────────────────────────────────────────────
-   CYBERCORE Clean Commercial SaaS Design System
-   Inspired by Linear, Vercel, Stripe
-   ───────────────────────────────────────────────────────────── */
-
+/* CYBERCORE semantic design tokens */
 :root {
-  --bg-app: #0B0F14;
-  --bg-sidebar: #10151D;
-  --bg-card: #151C26;
-  --bg-elevated: #1B2430;
-
-  --accent-blue: #3B82F6;
-  --accent-blue-hover: #2563EB;
-
-  --status-success: #22C55E;
-  --status-warning: #F59E0B;
-  --status-danger: #EF4444;
-
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --text-muted: #64748B;
-
-  --border-subtle: #1E2633;
-  --border-card: #1E2633;
-  --border-hover: #2A3649;
+  --color-background: #0B0F14;
+  --color-surface: #111821;
+  --color-card: #151E29;
+  --color-border: #263244;
+  --color-border-subtle: #1B2635;
+  --color-primary: #3B82F6;
+  --color-primary-hover: #2563EB;
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-text: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
 }
 
 * {
