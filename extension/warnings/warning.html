@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBERCORE — Security Threat Intercepted</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      background: #090d16;
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(239, 68, 68, 0.2);
+    }
+    .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #ef4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 20px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+    p {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .url-badge {
+      background: #020617;
+      border: 1px solid #1e293b;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      color: #f87171;
+      word-break: break-all;
+      margin-bottom: 28px;
+    }
+    .btn-safety {
+      display: inline-block;
+      background: #06b6d4;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3);
+      transition: background 0.2s;
+    }
+    .btn-safety:hover {
+      background: #0891b2;
+    }
+    .proceed-link {
+      display: block;
+      margin-top: 18px;
+      font-size: 12px;
+      color: #64748b;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .proceed-link:hover {
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🚨</div>
+    <h1>Dangerous Website Blocked</h1>
+    <p>
+      CYBERCORE real-time shield intercepted an attempt to load a website identified as a malicious threat or deceptive credential harvester.
+    </p>
+
+    <div class="url-badge" id="blocked-url">
+      Target: Unknown
+    </div>
+
+    <div>
+      <button class="btn-safety" id="btn-back">Return to Safety</button>
+      <a class="proceed-link" id="btn-proceed">I understand the risks, proceed anyway (unsafe)</a>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const targetUrl = params.get("url") || "Unknown";
+    document.getElementById("blocked-url").textContent = targetUrl;
+
+    document.getElementById("btn-back").addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "https://www.google.com";
+      }
+    });
+
+    document.getElementById("btn-proceed").addEventListener("click", () => {
+      if (targetUrl !== "Unknown") {
+        window.location.href = targetUrl;
+      }
+    });
+  </script>
+</body>
+</html>
