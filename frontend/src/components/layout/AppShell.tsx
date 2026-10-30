@@ -10,7 +10,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0B0F14] text-[#F8FAFC] flex">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground md:flex">
       {/* 240px Fixed/Collapsible Sidebar in Document Flow */}
       <AppSidebar
         collapsed={collapsed}
@@ -23,7 +23,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="flex-1 flex flex-col min-w-0">
         <AppHeader onMobileMenuOpen={() => setMobileOpen(true)} />
 
-        <main className="min-w-0 flex-1 p-4 sm:p-6 lg:p-10 xl:p-12 max-w-[1480px] w-full mx-auto">
+        <main className="min-w-0 w-full flex-1 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-9 xl:px-10">
           {children}
         </main>
       </div>

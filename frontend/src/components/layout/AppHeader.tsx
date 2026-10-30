@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, Search, Bell, Shield } from "lucide-react";
+import { Menu, Search, Shield } from "lucide-react";
 import Link from "next/link";
 
 interface AppHeaderProps {
@@ -41,12 +41,12 @@ export function AppHeader({ onMobileMenuOpen }: AppHeaderProps) {
   };
 
   return (
-    <header className="h-14 border-b border-[#1E2633] bg-[#0B0F14]/90 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-background/90 px-4 backdrop-blur-md sm:px-6 lg:px-8">
       {/* Left: Mobile Toggle & Page Breadcrumb / Title */}
       <div className="flex items-center gap-3">
         <button
           onClick={onMobileMenuOpen}
-          className="p-1.5 rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#151C26] md:hidden cursor-pointer"
+          className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-card lg:hidden cursor-pointer"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -72,25 +72,8 @@ export function AppHeader({ onMobileMenuOpen }: AppHeaderProps) {
           />
         </form>
 
-        {/* Notifications Icon */}
-        <Link
-          href="/history"
-          className="p-2 rounded-lg text-[#94A3B8] hover:text-[#F8FAFC] hover:bg-[#151C26] transition relative cursor-pointer"
-          title="Notifications"
-        >
-          <Bell className="w-4 h-4" />
-          <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-[#3B82F6]" />
-        </Link>
-
-        {/* User Profile Pill */}
-        <Link
-          href="/settings"
-          className="flex items-center gap-2 pl-1.5 py-1 pr-2 rounded-lg hover:bg-[#151C26] transition cursor-pointer"
-        >
-          <div className="w-6 h-6 rounded-full bg-[#1B2430] border border-[#1E2633] flex items-center justify-center text-[#3B82F6] text-[11px] font-medium">
-            AM
-          </div>
-          <span className="text-xs font-medium text-[#F8FAFC] hidden md:inline">Alex Mitchell</span>
+        <Link href="/settings" className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-primary transition hover:border-primary" title="Open settings" aria-label="Open settings">
+          <Shield className="h-4 w-4" />
         </Link>
       </div>
     </header>

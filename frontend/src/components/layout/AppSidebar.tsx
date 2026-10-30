@@ -71,16 +71,16 @@ export function AppSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: A
       {/* Mobile Backdrop */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-40 md:hidden backdrop-blur-xs"
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden backdrop-blur-xs"
           onClick={onMobileClose}
         />
       )}
 
       {/* 220px Fixed/Collapsible Sidebar in Document Flow */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-40 md:sticky md:top-0 md:h-screen md:shrink-0 flex flex-col bg-[#10151D] border-r border-[#1E2633] transition-all duration-200 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 lg:sticky lg:top-0 lg:h-screen lg:shrink-0 flex flex-col bg-[#10151D] border-r border-[#1E2633] transition-all duration-200 ${
           collapsed ? "w-16" : "w-[220px]"
-        } ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+        } ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
       >
         {/* Brand / Logo */}
         <div className="h-14 flex items-center justify-between px-4 border-b border-[#1E2633]">

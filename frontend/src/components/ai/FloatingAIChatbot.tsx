@@ -77,10 +77,10 @@ export function FloatingAIChatbot() {
   return (
     <>
       {/* Floating Action Trigger Button (Bottom-Right Corner, Closed by default) */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
         <button
           onClick={() => setOpen(!open)}
-          className={`flex items-center gap-2 px-3.5 py-2.5 rounded-full shadow-lg transition-all duration-150 cursor-pointer ${
+          className={`flex min-h-11 items-center gap-2 rounded-full px-3.5 py-2.5 shadow-lg transition-all duration-150 cursor-pointer ${
             open
               ? "bg-[#1B2430] text-[#F8FAFC] border border-[#1E2633]"
               : "bg-[#3B82F6] hover:bg-[#2563EB] text-white"
@@ -92,7 +92,7 @@ export function FloatingAIChatbot() {
           ) : (
             <>
               <Sparkles className="w-4 h-4 text-white" />
-              <span className="text-xs font-medium">CYBERCORE AI</span>
+              <span className="hidden text-xs font-medium sm:inline">CYBERCORE AI</span>
             </>
           )}
         </button>
@@ -106,7 +106,7 @@ export function FloatingAIChatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 12 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="fixed bottom-20 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[400px] h-[520px] max-h-[calc(100vh-7rem)] rounded-2xl bg-[#10151D] border border-[#1E2633] shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-20 right-4 z-50 w-[calc(100vw-2rem)] sm:right-6 sm:w-[400px] h-[520px] max-h-[calc(100vh-7rem)] rounded-2xl bg-[#10151D] border border-[#1E2633] shadow-2xl flex flex-col overflow-hidden"
           >
             {/* Proper Header */}
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E2633] bg-[#10151D]">
