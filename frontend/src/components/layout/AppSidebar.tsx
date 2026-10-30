@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   Shield, LayoutDashboard, Globe, MessageSquare, Lock,
   Server, FileCheck, Bot, History, Settings,
-  ChevronLeft, ChevronRight, User, LogOut
+  ChevronLeft, ChevronRight
 } from "lucide-react";
 import { Chrome } from "@/components/ui/BrandIcons";
 
@@ -144,23 +144,7 @@ export function AppSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: A
           ))}
         </div>
 
-        {/* Bottom User Profile */}
-        <div className="p-3 border-t border-[#1E2633] bg-[#10151D]">
-          <Link
-            href="/settings"
-            className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-[#151C26] transition cursor-pointer"
-          >
-            <div className="w-7 h-7 rounded-full bg-[#1B2430] border border-[#1E2633] flex items-center justify-center text-[#3B82F6] font-medium text-xs shrink-0">
-              AM
-            </div>
-            {!collapsed && (
-              <div className="flex-1 min-w-0">
-                <span className="text-xs font-medium text-[#F8FAFC] block truncate">Alex Mitchell</span>
-                <span className="text-[10px] text-[#64748B] block truncate">alex@cybercore.io</span>
-              </div>
-            )}
-          </Link>
-        </div>
+
       </aside>
     </>
   );

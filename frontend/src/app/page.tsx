@@ -7,7 +7,7 @@ import {
   Globe, Search, Loader2, Shield, AlertTriangle, AlertOctagon,
   CheckCircle2, ArrowRight, Lock, MessageSquare, FileCheck,
   ExternalLink, X, RefreshCw, ChevronRight, ShieldCheck,
-  Activity, ArrowUpRight
+  Activity, ArrowUpRight, Server
 } from "lucide-react";
 import {
   getDashboardStats,
@@ -118,6 +118,16 @@ export default function HomePage() {
     };
   }, []);
 
+  const derivedStats = {
+    total: stats?.total_scans_today ?? recentScans.length,
+    safe: recentScans.filter((scan) => Number(scan.risk_score ?? 0) < 35).length,
+    suspicious: recentScans.filter((scan) => {
+      const score = Number(scan.risk_score ?? 0);
+      return score >= 35 && score < 70;
+    }).length,
+    dangerous: recentScans.filter((scan) => Number(scan.risk_score ?? 0) >= 70).length,
+  };
+
   const handleScanSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setValidationError(null);
@@ -217,16 +227,8 @@ export default function HomePage() {
             Welcome to CYBERCORE
           </h1>
           <p className="text-sm text-[#94A3B8] mt-1.5 font-normal">
-            Your digital security, simplified. Stay ahead of what&apos;s next.
+            Your digital safety starts here. Review a website before you trust it.
           </p>
-        </div>
-
-        {/* Real-time System Status Pill */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#151C26] border border-[#1E2633] text-xs text-[#94A3B8] self-start sm:self-auto">
-          <span className="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" />
-          <span className="text-[#F8FAFC] font-medium">System Operational</span>
-          <span className="text-[#64748B]">·</span>
-          <span>v2.4 Active Defense</span>
         </div>
       </div>
 
@@ -241,12 +243,12 @@ export default function HomePage() {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#3B82F6] mb-1">Threat intelligence</p>
-              <h2 className="text-lg sm:text-xl font-semibold text-[#F8FAFC] tracking-tight">
-                Is this website safe?
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#3B82F6] mb-1">Website risk analysis</p>
+              <h2 className="text-2xl sm:text-3xl font-semibold text-[#F8FAFC] tracking-tight">
+                Check before you click.
               </h2>
               <p className="text-xs sm:text-sm text-[#94A3B8] mt-1">
-                Analyze suspicious websites for phishing, scams and malicious activity.
+                Analyze a website for phishing, scams, malware and other signals of risk.
               </p>
             </div>
           </div>
@@ -410,60 +412,26 @@ export default function HomePage() {
           Real backend data only, zero invented metrics, graceful empty states
           ───────────────────────────────────────────────────────────── */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Stat 1: Total Scans */}
-        <div className="bg-[#151C26] border border-[#1E2633] rounded-xl p-5 space-y-1">
-          <span className="text-xs font-medium text-[#94A3B8]">Total Scans</span>
-          <div className="text-2xl font-semibold text-[#F8FAFC] tracking-tight">
-            {loadingTelemetry ? (
-              <span className="inline-block w-16 h-7 bg-[#1E2633] animate-pulse rounded" />
-            ) : (
-              stats?.total_scans_today?.toLocaleString() ?? "0"
-            )}
-          </div>
-          <p className="text-[11px] text-[#64748B]">Telemetry recorded today</p>
-        </div>
-
-        {/* Stat 2: Threats Detected */}
-        <div className="bg-[#151C26] border border-[#1E2633] rounded-xl p-5 space-y-1">
-          <span className="text-xs font-medium text-[#94A3B8]">Threats Detected</span>
-          <div className="text-2xl font-semibold text-[#EF4444] tracking-tight">
-            {loadingTelemetry ? (
-              <span className="inline-block w-16 h-7 bg-[#1E2633] animate-pulse rounded" />
-            ) : (
-              stats?.threats_intercepted?.toLocaleString() ?? "0"
-            )}
-          </div>
-          <p className="text-[11px] text-[#64748B]">Interceptions across all engines</p>
-        </div>
-
-        {/* Stat 3: High-Risk Websites */}
-        <div className="bg-[#151C26] border border-[#1E2633] rounded-xl p-5 space-y-1">
-          <span className="text-xs font-medium text-[#94A3B8]">High-Risk Websites</span>
-          <div className="text-2xl font-semibold text-[#F59E0B] tracking-tight">
-            {loadingTelemetry ? (
-              <span className="inline-block w-16 h-7 bg-[#1E2633] animate-pulse rounded" />
-            ) : (
-              stats?.phishing_campaigns_detected?.toLocaleString() ?? "0"
-            )}
-          </div>
-          <p className="text-[11px] text-[#64748B]">Confirmed malicious domains</p>
-        </div>
-
-        {/* Stat 4: Browser Protection */}
-        <div className="bg-[#151C26] border border-[#1E2633] rounded-xl p-5 space-y-1">
-          <span className="text-xs font-medium text-[#94A3B8]">Browser Protection</span>
-          <div className="text-2xl font-semibold text-[#22C55E] tracking-tight flex items-center gap-2">
-            {loadingTelemetry ? (
-              <span className="inline-block w-20 h-7 bg-[#1E2633] animate-pulse rounded" />
-            ) : (
-              <>
-                <span>{stats?.protection_status === "ACTIVE_DEFENSE" ? "Active" : stats?.protection_status || "Active"}</span>
-                <span className="w-2 h-2 rounded-full bg-[#22C55E]" />
-              </>
-            )}
-          </div>
-          <p className="text-[11px] text-[#64748B]">Zero-hour extension guard</p>
-        </div>
+        {[
+          { label: "Total Scans", value: derivedStats.total, tone: "text-[#F8FAFC]", icon: Activity },
+          { label: "Safe Websites", value: derivedStats.safe, tone: "text-[#22C55E]", icon: CheckCircle2 },
+          { label: "Suspicious Websites", value: derivedStats.suspicious, tone: "text-[#F59E0B]", icon: AlertTriangle },
+          { label: "Dangerous Websites", value: derivedStats.dangerous, tone: "text-[#EF4444]", icon: AlertOctagon },
+        ].map((stat) => {
+          const Icon = stat.icon;
+          return (
+            <div key={stat.label} className="bg-[#151C26] border border-[#263244] rounded-xl p-5 flex items-start justify-between">
+              <div>
+                <span className="text-xs font-medium text-[#94A3B8]">{stat.label}</span>
+                <div className={`mt-2 text-2xl font-semibold tracking-tight ${stat.tone}`}>
+                  {loadingTelemetry ? <span className="inline-block w-10 h-7 bg-[#263244] animate-pulse rounded" /> : stat.value.toLocaleString()}
+                </div>
+                <p className="mt-1 text-[11px] text-[#64748B]">Based on recorded scans</p>
+              </div>
+              <Icon className={`w-4 h-4 ${stat.tone}`} aria-hidden="true" />
+            </div>
+          );
+        })}
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
@@ -476,26 +444,26 @@ export default function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {/* Card 1: Website Scanner */}
+          {/* Card 1: Email and SMS Scanner */}
           <Link
-            href="/scanner"
+            href="/messages"
             className="group bg-[#151C26] hover:bg-[#18202C] border border-[#1E2633] hover:border-[#2A3649] rounded-xl p-4 transition-all duration-150 flex flex-col justify-between space-y-3 cursor-pointer"
           >
             <div className="space-y-2.5">
               <div className="w-8 h-8 rounded-lg bg-[#10151D] border border-[#1E2633] flex items-center justify-center text-[#3B82F6] group-hover:border-[#3B82F6]/30 transition">
-                <Globe className="w-4 h-4" />
+                <MessageSquare className="w-4 h-4" />
               </div>
               <div>
                 <h4 className="text-sm font-medium text-[#F8FAFC] group-hover:text-white transition">
-                  Website Scanner
+                  Email &amp; SMS Scanner
                 </h4>
                 <p className="text-xs text-[#94A3B8] mt-1 leading-relaxed">
-                  Analyze URLs and domains for phishing and malware.
+                  Detect social engineering, scams, and urgent lures.
                 </p>
               </div>
             </div>
             <div className="flex items-center text-xs font-medium text-[#3B82F6] gap-1 group-hover:translate-x-0.5 transition-transform">
-              <span>Scan website</span>
+              <span>Inspect message</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </Link>
@@ -524,21 +492,21 @@ export default function HomePage() {
             </div>
           </Link>
 
-          {/* Card 3: Message Scanner */}
+          {/* Card 3: Domain Intelligence */}
           <Link
-            href="/messages"
+            href="/ip-domain"
             className="group bg-[#151C26] hover:bg-[#18202C] border border-[#1E2633] hover:border-[#2A3649] rounded-xl p-4 transition-all duration-150 flex flex-col justify-between space-y-3 cursor-pointer"
           >
             <div className="space-y-2.5">
               <div className="w-8 h-8 rounded-lg bg-[#10151D] border border-[#1E2633] flex items-center justify-center text-[#3B82F6] group-hover:border-[#3B82F6]/30 transition">
-                <MessageSquare className="w-4 h-4" />
+                <Server className="w-4 h-4" />
               </div>
               <div>
                 <h4 className="text-sm font-medium text-[#F8FAFC] group-hover:text-white transition">
-                  Message Scanner
+                  Domain Intelligence
                 </h4>
                 <p className="text-xs text-[#94A3B8] mt-1 leading-relaxed">
-                  Detect social engineering, scams, and urgent lures.
+                  Review domain ownership, reputation, and network signals.
                 </p>
               </div>
             </div>
@@ -601,10 +569,10 @@ export default function HomePage() {
             <table className="w-full text-left text-xs">
               <thead>
                 <tr className="bg-[#10151D] border-b border-[#1E2633] text-[11px] font-medium text-[#64748B] uppercase tracking-wider">
-                  <th className="py-3 px-4">Website / Target</th>
+                  <th className="py-3 px-4">Website</th>
                   <th className="py-3 px-4">Scan Type</th>
                   <th className="py-3 px-4">Risk Score</th>
-                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4">Verdict</th>
                   <th className="py-3 px-4">Date</th>
                   <th className="py-3 px-4 text-right">Action</th>
                 </tr>
