@@ -173,8 +173,8 @@ function ScannerContent() {
               value={inputUrl}
               onChange={(e) => setInputUrl(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleScan()}
-              placeholder="https://example.com"
-              className="saas-input w-full pl-9 pr-4 py-3 text-xs sm:text-sm font-mono placeholder-[#64748B]"
+              className="saas-input w-full pr-4 py-3 text-xs sm:text-sm font-mono placeholder-[#64748B]"
+              style={{ paddingLeft: "2.75rem" }}
             />
           </div>
 

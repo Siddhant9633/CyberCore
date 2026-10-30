@@ -108,18 +108,18 @@ export function FloatingAIChatbot() {
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="fixed bottom-20 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[400px] h-[520px] max-h-[calc(100vh-7rem)] rounded-2xl bg-[#10151D] border border-[#1E2633] shadow-2xl flex flex-col overflow-hidden"
           >
-            {/* Proper Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[#1E2633] bg-[#10151D]">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-md bg-[#3B82F6]/10 flex items-center justify-center text-[#3B82F6]">
-                  <Sparkles className="w-3.5 h-3.5" />
+            {/* Proper Header (Never shrinks) */}
+            <div className="shrink-0 flex items-center justify-between px-4 py-3.5 border-b border-[#1E2633] bg-[#10151D]">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center text-[#3B82F6] shrink-0">
+                  <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-[#F8FAFC] block leading-none">
+                  <span className="text-xs font-semibold text-[#F8FAFC] block leading-tight">
                     CYBERCORE AI
                   </span>
-                  <span className="text-[10px] text-[#22C55E] flex items-center gap-1 mt-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]" />
+                  <span className="text-[10px] text-[#22C55E] flex items-center gap-1.5 mt-0.5 font-medium">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E] animate-pulse" />
                     Online
                   </span>
                 </div>
@@ -143,8 +143,8 @@ export function FloatingAIChatbot() {
               </div>
             </div>
 
-            {/* Chat Body */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            {/* Chat Body (Scrollable container strictly constrained) */}
+            <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-3">
               {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -165,7 +165,24 @@ export function FloatingAIChatbot() {
                         : "bg-[#151C26] border border-[#1E2633] text-[#F8FAFC]"
                     }`}
                   >
-                    {msg.content}
+                    {msg.content.split("\n").map((line, lIdx) => {
+                      // Format bold markdown **text**
+                      const parts = line.split(/(\*\*.*?\*\*)/g);
+                      return (
+                        <span key={lIdx} className="block min-h-[1.1rem]">
+                          {parts.map((part, pIdx) => {
+                            if (part.startsWith("**") && part.endsWith("**")) {
+                              return (
+                                <strong key={pIdx} className="font-semibold text-white">
+                                  {part.slice(2, -2)}
+                                </strong>
+                              );
+                            }
+                            return part;
+                          })}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
@@ -205,8 +222,8 @@ export function FloatingAIChatbot() {
               <div ref={chatEndRef} />
             </div>
 
-            {/* Input Form */}
-            <div className="p-3 border-t border-[#1E2633] bg-[#10151D]">
+            {/* Input Form (Never shrinks) */}
+            <div className="shrink-0 p-3 border-t border-[#1E2633] bg-[#10151D]">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

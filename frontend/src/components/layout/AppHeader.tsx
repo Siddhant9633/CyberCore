@@ -68,7 +68,8 @@ export function AppHeader({ onMobileMenuOpen }: AppHeaderProps) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search or enter URL..."
-            className="w-full bg-[#151C26] border border-[#1E2633] hover:border-[#2A3649] focus:border-[#3B82F6] rounded-lg pl-8 pr-3 py-1.5 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none transition"
+            className="w-full bg-[#151C26] border border-[#1E2633] hover:border-[#2A3649] focus:border-[#3B82F6] rounded-lg pr-3 py-1.5 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none transition"
+            style={{ paddingLeft: "2.25rem" }}
           />
         </form>
 

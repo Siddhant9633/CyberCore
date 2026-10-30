@@ -260,7 +260,8 @@ export default function HomePage() {
                   if (scanError) setScanError(null);
                 }}
                 placeholder="Enter website URL or domain (e.g. secure-login.example.com)"
-                className="w-full bg-[#0B0F14] border border-[#1E2633] hover:border-[#2A3649] focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] rounded-lg pl-10 pr-10 py-3 text-sm font-mono text-[#F8FAFC] placeholder-[#64748B] focus:outline-none transition"
+                className="w-full bg-[#0B0F14] border border-[#1E2633] hover:border-[#2A3649] focus:border-[#3B82F6] focus:ring-1 focus:ring-[#3B82F6] rounded-lg py-3 text-sm font-mono text-[#F8FAFC] placeholder-[#64748B] focus:outline-none transition"
+                style={{ paddingLeft: "2.75rem", paddingRight: "2.75rem" }}
               />
               {urlInput && (
                 <button
